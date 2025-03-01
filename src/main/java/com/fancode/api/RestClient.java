@@ -40,47 +40,6 @@ public class RestClient {
         return response;
     }
 
-    public Response post(String endpoint, Object body) {
-        logger.info("Sending POST request to: {}", endpoint);
-        Response response = RestAssured.given()
-                .spec(requestSpec)
-                .body(body)
-                .when()
-                .post(endpoint)
-                .then()
-                .extract()
-                .response();
-        logResponse(response);
-        return response;
-    }
-
-    public Response put(String endpoint, Object body) {
-        logger.info("Sending PUT request to: {}", endpoint);
-        Response response = RestAssured.given()
-                .spec(requestSpec)
-                .body(body)
-                .when()
-                .put(endpoint)
-                .then()
-                .extract()
-                .response();
-        logResponse(response);
-        return response;
-    }
-
-    public Response delete(String endpoint) {
-        logger.info("Sending DELETE request to: {}", endpoint);
-        Response response = RestAssured.given()
-                .spec(requestSpec)
-                .when()
-                .delete(endpoint)
-                .then()
-                .extract()
-                .response();
-        logResponse(response);
-        return response;
-    }
-
     private void logResponse(Response response) {
         logger.info("Response Status Code: {}", response.getStatusCode());
         logger.debug("Response Body: {}", response.getBody().asString());
